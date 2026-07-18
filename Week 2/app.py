@@ -2,7 +2,7 @@ import streamlit as st
 from PIL import Image
 from imagecaption import generate_caption
 from database import add_entry, load_db
-# from text_classifier import classify_text  (your model, e.g. LoRA-tuned DistilBERT)
+from text_classifier import classify_text  # was commented out -> classify_text was undefined
 
 st.title("Toxic Content Classifier")
 
@@ -11,7 +11,7 @@ mode = st.radio("Input type", ["Text", "Image"])
 if mode == "Text":
     text = st.text_area("Enter text")
     if st.button("Classify") and text:
-        result = classify_text(text)   # your classifier call
+        result = classify_text(text)
         add_entry(text, result)
         st.write(f"Classification: {result}")
 
